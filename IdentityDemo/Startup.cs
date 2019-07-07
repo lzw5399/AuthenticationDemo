@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using IdentityDemo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using IdentityDemo.Models;
 
 namespace IdentityDemo
 {
@@ -29,7 +30,7 @@ namespace IdentityDemo
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // 配置前台是否需要弹出框,提示用户我们正在使用cookie
+                // 配置前台是否需要弹出框,提示用户我们正在使用cookie,前端razor里会判断
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -40,7 +41,7 @@ namespace IdentityDemo
                     Configuration.GetConnectionString("DefaultConnection")));
 
             // 身份认证的依赖注入, IdentityUser是微软默认提供的用户, ApplicationDbContext是存储的位置
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<CustomerUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
