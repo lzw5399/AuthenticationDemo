@@ -41,7 +41,7 @@ namespace IdentityDemo
                     Configuration.GetConnectionString("DefaultConnection")));
 
             // 身份认证的依赖注入, IdentityUser是微软默认提供的用户, ApplicationDbContext是存储的位置
-            services.AddDefaultIdentity<CustomerUser>()
+            services.AddDefaultIdentity<IdentityUser>() // 这里面默认是使用cookie的
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
