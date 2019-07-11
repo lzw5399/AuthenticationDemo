@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IdentityDemo.Models
 {
-    public class SenderOptions
+    public class MailSenderOptions
     {
         public string Host { get; set; }
 

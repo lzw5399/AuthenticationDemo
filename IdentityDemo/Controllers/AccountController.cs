@@ -45,6 +45,7 @@ namespace IdentityDemo.Controllers
         public IActionResult Login(string returnUrl = null)
         {
             _emailSender.SendEmailAsync("1130120850@qq.com", "test", "testtt");
+            _smsSender.SendSmsAsync(string.Empty, string.Empty);
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
