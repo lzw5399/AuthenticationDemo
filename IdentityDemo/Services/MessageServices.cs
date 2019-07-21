@@ -48,7 +48,7 @@ namespace IdentityDemo.Services
 
             string appkey = _smsSenderOptions.AppKey;
 
-            var phoneNumbers = new string[] { "18562310709" };
+            var phoneNumbers = new string[] { number };
 
             int templateId = _smsSenderOptions.TemplateId;
 
