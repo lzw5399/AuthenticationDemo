@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using IdentityModel;
 
 namespace Claims_Baesd.Demo.Controllers
 {
@@ -51,7 +52,11 @@ namespace Claims_Baesd.Demo.Controllers
             userPrincipal.AddIdentity(claimsIdentity);
             userPrincipal.AddIdentity(claimsIdentity2);
 
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal).Wait();
+            var properties = new AuthenticationProperties();
+            properties.IsPersistent = true;
+            properties.ExpiresUtc = DateTime.UtcNow.AddMinutes(20);
+
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, properties).Wait();
 
             return RedirectToAction(nameof(Manager));
         }

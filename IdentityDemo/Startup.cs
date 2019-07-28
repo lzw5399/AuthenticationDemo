@@ -41,7 +41,7 @@ namespace IdentityDemo
 
             // Identity配置
             /*services
-                .AddIdentityCore<ApplicationUser>(a => 
+                .AddIdentityCore<ApplicationUser>(a =>
                     {
                         a.Lockout = new LockoutOptions
                         {
@@ -93,16 +93,16 @@ namespace IdentityDemo
                     })*/
 
             // Identity Cookie配置
-            /*services.ConfigureApplicationCookie(a =>
-            {
-                a.AccessDeniedPath = "/home/accessDenied/";
-                a.Cookie.Name = "cookieName";
-                a.Cookie.HttpOnly = true; // js无法查看cookie
-                a.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-                a.LoginPath = "/user/login"; // 登录界面可定制
-                a.ReturnUrlParameter = "return"; // 默认是returnUrl
-                a.SlidingExpiration = true; // 滑动过期
-            });*/
+            //services.ConfigureApplicationCookie(a =>
+            //{
+            //    a.AccessDeniedPath = "/home/accessDenied/";
+            //    a.Cookie.Name = "cookieName";
+            //    a.Cookie.HttpOnly = true; // js无法查看cookie
+            //    a.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+            //    a.LoginPath = "/user/login"; // 登录界面可定制
+            //    a.ReturnUrlParameter = "return"; // 默认是returnUrl
+            //    a.SlidingExpiration = true; // 滑动过期
+            //});
 
             services
                 .AddIdentityCore<ApplicationUser>()
