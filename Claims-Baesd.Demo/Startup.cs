@@ -33,7 +33,10 @@ namespace Claims_Baesd.Demo
 
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+                .AddCookie(c =>
+                {
+                    c.LoginPath = "/home/login";
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

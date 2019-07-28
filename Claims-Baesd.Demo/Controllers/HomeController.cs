@@ -8,6 +8,7 @@ using Claims_Baesd.Demo.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Claims_Baesd.Demo.Controllers
 {
@@ -55,9 +56,17 @@ namespace Claims_Baesd.Demo.Controllers
             return RedirectToAction(nameof(Manager));
         }
 
+        [Authorize(Roles = "C1")]
         public IActionResult Manager()
         {
             return Content($"Hello,{User?.Identity?.Name}");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
+
+            return RedirectToAction(nameof(Login));
         }
 
         public IActionResult Privacy()
