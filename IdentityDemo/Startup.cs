@@ -97,7 +97,7 @@ namespace IdentityDemo
             //{
             //    a.AccessDeniedPath = "/home/accessDenied/";
             //    a.Cookie.Name = "cookieName";
-            //    a.Cookie.HttpOnly = true; // js无法查看cookie
+            //    a.Cookie.HttpOnly = true; // 设置js无法查看cookie
             //    a.ExpireTimeSpan = TimeSpan.FromMinutes(20);
             //    a.LoginPath = "/user/login"; // 登录界面可定制
             //    a.ReturnUrlParameter = "return"; // 默认是returnUrl
