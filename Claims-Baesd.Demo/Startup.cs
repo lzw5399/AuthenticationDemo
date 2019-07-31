@@ -33,6 +33,16 @@ namespace Claims_Baesd.Demo
             });
 
             services
+                //.AddAuthentication(options =>
+                //{
+                //    options.AddScheme("233", builder =>
+                //    {
+                //        builder.DisplayName = "xx";
+                //        builder.HandlerType = typeof(string);
+                //    });
+                //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //    options.DefaultSignInScheme = "xx";
+                //})
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(c =>
                 {
