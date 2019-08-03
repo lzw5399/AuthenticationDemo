@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpBasic.Demo", "HttpBasic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpBasic", "HttpBasic", "{A4ABFD1B-2368-4DA5-AD54-0BF6FF03A74F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT.Demo", "JWT.Demo\JWT.Demo.csproj", "{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JWT", "JWT", "{C98C317B-4017-438A-BF0B-3E6FE894542F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{50A839E6-D418-42B8-9313-A9EE1441B15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50A839E6-D418-42B8-9313-A9EE1441B15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50A839E6-D418-42B8-9313-A9EE1441B15F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{71082792-1398-41A2-9ED6-A2F6FBCA5CD2} = {A4ABFD1B-2368-4DA5-AD54-0BF6FF03A74F}
 		{50A839E6-D418-42B8-9313-A9EE1441B15F} = {A4ABFD1B-2368-4DA5-AD54-0BF6FF03A74F}
+		{9199C12E-DE3A-4E25-BF5A-6EAA6833EAAF} = {C98C317B-4017-438A-BF0B-3E6FE894542F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {70500D10-0B69-44CC-9283-F8708CC74982}
