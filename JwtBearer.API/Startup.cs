@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using IdentityModel;
@@ -35,9 +36,14 @@ namespace JwtBearer.API
                     var secret = "Thisisthesecretkey!@#$%^&*()_+";
                     var key = Encoding.ASCII.GetBytes(secret);
 
+                    options.TokenValidationParameters.ValidateIssuer = true;
+                    options.TokenValidationParameters.ValidateAudience = true;
+                    options.TokenValidationParameters.ValidateIssuerSigningKey = true;
                     options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(key);
                     options.TokenValidationParameters.ValidAudience = "api";
-                    options.TokenValidationParameters.ValidIssuer = "http://localhost:52586";
+                    options.TokenValidationParameters.ValidIssuer = "http://localhost:59541";
+                    options.TokenValidationParameters.NameClaimType = JwtClaimTypes.Name;
+                    options.TokenValidationParameters.RoleClaimType = JwtClaimTypes.Role;
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@ namespace JwtBearer.API.Controllers
         [Authorize]
         public IActionResult GetAuthorizedName()
         {
-            var name = User.Identity.Name ?? "认证失败";
+            var name = User.Identity.Name;
 
             return Ok(name);
         }
