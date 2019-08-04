@@ -52,6 +52,14 @@ namespace JwtBearer.API
                     options.TokenValidationParameters.RoleClaimType = JwtClaimTypes.Role;
                 });
 
+                //.AddWsFederation(options =>
+                //{
+                //    // Azure提供的一个链接
+                //    options.MetadataAddress = "https://login.azurelink.com";
+                //    // 登陆地址
+                //    options.Wtrealm = "https://登录地址_自己的或者是微软的";
+                //});
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
