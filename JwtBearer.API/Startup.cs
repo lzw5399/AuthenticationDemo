@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using IdentityModel;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace JwtBearer.API
 {
@@ -35,11 +37,15 @@ namespace JwtBearer.API
                     // mock jwt的密钥secret
                     var secret = "Thisisthesecretkey!@#$%^&*()_+";
                     var key = Encoding.ASCII.GetBytes(secret);
+                    options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(key);
+
+                    // mocked的rsa的key
+                    //var publicParameters = new RSAParameters();
+                    //options.TokenValidationParameters.IssuerSigningKey = new RsaSecurityKey(publicParameters);
 
                     options.TokenValidationParameters.ValidateIssuer = true;
                     options.TokenValidationParameters.ValidateAudience = true;
                     options.TokenValidationParameters.ValidateIssuerSigningKey = true;
-                    options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(key);
                     options.TokenValidationParameters.ValidAudience = "api";
                     options.TokenValidationParameters.ValidIssuer = "http://localhost:59541";
                     options.TokenValidationParameters.NameClaimType = JwtClaimTypes.Name;

@@ -1,20 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using IdentityModel;
 using JwtBearer.IdentityProvider.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace JwtBearer.IdentityProvider.Controllers
 {
     [Route("api/token")]
     public class TokenProviderController : ControllerBase
     {
+        private readonly IHostingEnvironment _env;
+
+        public TokenProviderController(IHostingEnvironment env)
+        {
+            _env = env;
+        }
+
         [HttpPost]
         public IActionResult Login([FromBody]LoginRequest request)
         {
@@ -36,11 +47,15 @@ namespace JwtBearer.IdentityProvider.Controllers
 
             // mock jwt的密钥secret
             var secret = "Thisisthesecretkey!@#$%^&*()_+";
+            var key = Encoding.ASCII.GetBytes(secret);
 
             // jwt token处理器
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(secret);
+            // 读取私钥文件，并序列化, 并通过keyParameters构建一个rsaSecurityKey
+            //var privateKey = System.IO.File.ReadAllText(Path.Combine(_env.ContentRootPath, "key-private.json"));
+            //var keyParameters = JsonConvert.DeserializeObject<RSAParameters>(privateKey);
+            //var rsaSecurityKey = new RsaSecurityKey(keyParameters);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -55,6 +70,7 @@ namespace JwtBearer.IdentityProvider.Controllers
                     new Claim(JwtClaimTypes.Role, "manager")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(20),
+                // SigningCredentials = new SigningCredentials(new RsaSecurityKey(keyParameters), SecurityAlgorithms.RsaSha256Signature)
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
