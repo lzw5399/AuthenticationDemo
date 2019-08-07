@@ -45,7 +45,7 @@ namespace JwtBearer.IdentityProvider.Controllers
                 PhoneNumber = "0123456789"
             };
 
-            // mock jwt的密钥secret
+            // 【对称加密】mock jwt的密钥secret
             //var secret = "Thisisthesecretkey!@#$%^&*()_+";
             //var key = Encoding.ASCII.GetBytes(secret);
 
