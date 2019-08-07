@@ -19,11 +19,11 @@ namespace JwtBearer.IdentityProvider.Controllers
     [Route("api/token")]
     public class TokenProviderController : ControllerBase
     {
-        private readonly IHostingEnvironment _env;
+        private readonly RSAParameters _rsaParameters;
 
-        public TokenProviderController(IHostingEnvironment env)
+        public TokenProviderController(RSAParameters rsaParameters)
         {
-            _env = env;
+            _rsaParameters = rsaParameters;
         }
 
         [HttpPost]
@@ -46,16 +46,14 @@ namespace JwtBearer.IdentityProvider.Controllers
             };
 
             // mock jwt的密钥secret
-            var secret = "Thisisthesecretkey!@#$%^&*()_+";
-            var key = Encoding.ASCII.GetBytes(secret);
+            //var secret = "Thisisthesecretkey!@#$%^&*()_+";
+            //var key = Encoding.ASCII.GetBytes(secret);
 
             // jwt token处理器
             var tokenHandler = new JwtSecurityTokenHandler();
 
             // 读取私钥文件，并序列化, 并通过keyParameters构建一个rsaSecurityKey
-            //var privateKey = System.IO.File.ReadAllText(Path.Combine(_env.ContentRootPath, "key-private.json"));
-            //var keyParameters = JsonConvert.DeserializeObject<RSAParameters>(privateKey);
-            //var rsaSecurityKey = new RsaSecurityKey(keyParameters);
+            // note:这里do nothing
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -70,8 +68,8 @@ namespace JwtBearer.IdentityProvider.Controllers
                     new Claim(JwtClaimTypes.Role, "manager")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(20),
-                // SigningCredentials = new SigningCredentials(new RsaSecurityKey(keyParameters), SecurityAlgorithms.RsaSha256Signature)
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new RsaSecurityKey(_rsaParameters), SecurityAlgorithms.RsaSha256Signature)
+                // SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var securityToken = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);

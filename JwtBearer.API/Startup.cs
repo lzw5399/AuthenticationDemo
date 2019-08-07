@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -30,18 +31,19 @@ namespace JwtBearer.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var rsa = GetRSAParameters();
+
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    // mock jwt的密钥secret
-                    var secret = "Thisisthesecretkey!@#$%^&*()_+";
-                    var key = Encoding.ASCII.GetBytes(secret);
-                    options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(key);
+                    // 【对称加密】mock jwt的密钥secret
+                    //var secret = "Thisisthesecretkey!@#$%^&*()_+";
+                    //var key = Encoding.ASCII.GetBytes(secret);
+                    //options.TokenValidationParameters.IssuerSigningKey = new SymmetricSecurityKey(key);
 
-                    // mocked的rsa的key
-                    //var publicParameters = new RSAParameters();
-                    //options.TokenValidationParameters.IssuerSigningKey = new RsaSecurityKey(publicParameters);
+                    // 【非对称加密】
+                    options.TokenValidationParameters.IssuerSigningKey = new RsaSecurityKey(rsa);
 
                     options.TokenValidationParameters.ValidateIssuer = true;
                     options.TokenValidationParameters.ValidateAudience = true;
@@ -73,6 +75,30 @@ namespace JwtBearer.API
             }
 
             app.UseMvcWithDefaultRoute();
+        }
+
+        private RSAParameters GetRSAParameters()
+        {
+            var d = GetValueForRsa(Configuration.GetValue<string>("rsa:D"));
+            var dP = GetValueForRsa(Configuration.GetValue<string>("rsa:DP"));
+            var dQ = GetValueForRsa(Configuration.GetValue<string>("rsa:DQ"));
+            var exponent = GetValueForRsa(Configuration.GetValue<string>("rsa:Exponent"));
+            var inverseQ = GetValueForRsa(Configuration.GetValue<string>("rsa:InverseQ"));
+            var modulus = GetValueForRsa(Configuration.GetValue<string>("rsa:Modulus"));
+            var p = GetValueForRsa(Configuration.GetValue<string>("rsa:P"));
+            var q = GetValueForRsa(Configuration.GetValue<string>("rsa:Q"));
+
+            var rsa = new { D = d, DP = dP, DQ = dQ, Exponent = exponent, InverseQ = inverseQ, Modulus = modulus, P = p, Q = q };
+
+            var rsaStr = JsonConvert.SerializeObject(rsa);
+            var rsaObj = JsonConvert.DeserializeObject<RSAParameters>(rsaStr);
+
+            return rsaObj;
+        }
+
+        public string GetValueForRsa(string str)
+        {
+            return !string.IsNullOrEmpty(str) ? str : null;
         }
     }
 }
