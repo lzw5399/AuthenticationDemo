@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    <PackageReference Include="PrivateObjectHelper" Version="1.0.0" />
     <PackageReference Include="qcloud.qcloudsms_csharp" Version="0.1.6" />
   </ItemGroup>
 
