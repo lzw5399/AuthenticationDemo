@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.TokenProvider
+namespace IdentityServer4.IdentityProvider
 {
     public class Program
     {

@@ -1,10 +1,11 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer4.TokenProvider
+namespace IdentityServer4.IdentityProvider
 {
     public static class Config
     {
@@ -28,11 +29,12 @@ namespace IdentityServer4.TokenProvider
         {
             return new List<Client>
             {
+                // 该client用于客户端授权码模式
                 new Client
                 {
                     ClientId = "client",
 
-                    // no interactive user, use the clientid/secret for authentication
+                    // 允许Client通过clientid/secret方式获得token
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
                     // secret for authentication
@@ -43,6 +45,37 @@ namespace IdentityServer4.TokenProvider
 
                     // scopes that client has access to
                     AllowedScopes = { "api1" }
+                },
+                // 该client用于密码授权模式
+                new Client
+                {
+                    ClientId = "ro.client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "api1" }
+                }
+            };
+        }
+
+        public static List<TestUser> GetUsers()
+        {
+            return new List<TestUser>
+            {
+                new TestUser
+                {
+                    SubjectId = "1",
+                    Username = "alice",
+                    Password = "password"
+                },
+                new TestUser
+                {
+                    SubjectId = "2",
+                    Username = "bob",
+                    Password = "password"
                 }
             };
         }
