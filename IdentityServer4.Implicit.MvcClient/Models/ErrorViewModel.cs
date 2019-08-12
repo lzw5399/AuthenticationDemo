@@ -1,6 +1,6 @@
 using System;
 
-namespace IdentityServer4.Implicit.API.Models
+namespace IdentityServer4.Implicit.MvcClient.Models
 {
     public class ErrorViewModel
     {

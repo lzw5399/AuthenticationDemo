@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IdentityServer4.Implicit.API
+namespace IdentityServer4.Implicit.MvcClient
 {
     public class Startup
     {

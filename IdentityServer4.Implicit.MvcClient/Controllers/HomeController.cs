@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using IdentityServer4.Implicit.API.Models;
+using IdentityServer4.Implicit.MvcClient.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace IdentityServer4.Implicit.API.Controllers
+namespace IdentityServer4.Implicit.MvcClient.Controllers
 {
     [Authorize]
     public class HomeController : Controller

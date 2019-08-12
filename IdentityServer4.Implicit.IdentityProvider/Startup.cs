@@ -11,13 +11,28 @@ namespace IdentityServer4.Implicit.IdentityProvider
 {
     public class Startup
     {
+        public IHostingEnvironment Environment { get; }
+
+        public Startup(IHostingEnvironment environment)
+        {
+            Environment = environment;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
+            var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers());
+
+            if (Environment.IsDevelopment())
+            {
+                builder.AddDeveloperSigningCredential();
+            }
+            else
+            {
+                throw new Exception("need to configure key material");
+            }
 
             services.AddMvc();
         }

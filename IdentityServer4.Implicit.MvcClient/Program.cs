@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4.Implicit.API
+namespace IdentityServer4.Implicit.MvcClient
 {
     public class Program
     {

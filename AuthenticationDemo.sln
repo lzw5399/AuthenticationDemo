@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.IdentityPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4.Implicit.IdentityProvider", "IdentityServer4.Implicit.IdentityProvider\IdentityServer4.Implicit.IdentityProvider.csproj", "{0F487283-C2C9-474A-BCEB-B4F44CC561B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4.Implicit.API", "IdentityServer4.Implicit.API\IdentityServer4.Implicit.API.csproj", "{BEB41AA5-D60B-4EF7-BE38-1437CD3615BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4.Implicit.MvcClient", "IdentityServer4.Implicit.MvcClient\IdentityServer4.Implicit.MvcClient.csproj", "{BEB41AA5-D60B-4EF7-BE38-1437CD3615BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
